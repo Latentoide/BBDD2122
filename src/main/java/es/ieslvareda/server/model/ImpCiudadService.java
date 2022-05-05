@@ -1,17 +1,17 @@
 package es.ieslvareda.server.model;
 
-import es.ieslvareda.model.Authentification;
-import es.ieslvareda.model.Empleado;
-import es.ieslvareda.model.MyDataSource;
-import es.ieslvareda.model.Result;
+import es.ieslvareda.model.*;
 
 import javax.sql.DataSource;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
-public class ImpEmpeladoService implements  IEmpleadoService{
+public class ImpCiudadService implements ICiudadService{
     @Override
-    public Result<Empleado> autenticar(Authentification a) {
-        DataSource ds = MyDataSource.getMyOracleDataSource();
+    public Result<Ciudad> getCiudad(Ciudad a) {
+        DataSource ds = MyDataSource.getMyMariaDBDataSource();
         Empleado e = null;
         try(Connection con = ds.getConnection();
             PreparedStatement stmt = con.prepareStatement("select * from empleado where email like ? and ENCRYPT_PASWD.decrypt_val(password) like ?");){

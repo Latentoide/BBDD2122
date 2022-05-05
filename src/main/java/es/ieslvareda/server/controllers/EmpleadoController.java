@@ -21,7 +21,10 @@ public class EmpleadoController {
 
     public static Result<Empleado> getEmpleado(Request req, Response res){
         // http://localhost:4567/person?dni=1111
+
+        //System.out.println(res);
         String body = req.body();
+        System.out.println(body);
         Authentification a = jsonTransformer.getObjet(body, Authentification.class);
         Result result = service.autenticar(a);
         if(result instanceof Result.Success)

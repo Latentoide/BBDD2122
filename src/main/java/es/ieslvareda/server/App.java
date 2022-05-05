@@ -11,7 +11,7 @@ public class App {
         get(API.ALL_PERSON, PersonController::getPersons, new JsonTransformer<>());
         get(API.PERSON, PersonController::getPerson,new JsonTransformer<>());
         post(API.PERSON, PersonController::addPerson, new JsonTransformer<>());
-        get(API.AUTENTICAR, EmpleadoController::getEmpleado, new JsonTransformer<>());
+        post(API.AUTENTICAR, EmpleadoController::getEmpleado, new JsonTransformer<>());
     }
 }
 
