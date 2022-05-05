@@ -14,11 +14,13 @@ public class ImpCiudadService implements ICiudadService{
         DataSource ds = MyDataSource.getMyMariaDBDataSource();
         Empleado e = null;
         try(Connection con = ds.getConnection();
-            PreparedStatement stmt = con.prepareStatement("select * from empleado where email like ? and ENCRYPT_PASWD.decrypt_val(password) like ?");){
+            PreparedStatement stmt = con.prepareStatement("insert into ciudades values(?,?,?.?)");){
 
             int pos = 0;
-            stmt.setString(++pos, a.getEmail());
-            stmt.setString(++pos, a.getPassword());
+            stmt.setString(++pos, a.getNombre());
+            stmt.setString(++pos, a.getImg());
+            stmt.setFloat(++pos, a.getLon());
+            stmt.setFloat(++pos, a.getLat());
             ResultSet rs = stmt.executeQuery();
             if(rs.next()){
                 String nombre = rs.getString("nombre");
